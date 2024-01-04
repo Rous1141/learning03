@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 
 export default function Page() {
   return (
-    <div className='page'>
+    <div className='page'> 
       <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         sx={{ height: 140 }}
