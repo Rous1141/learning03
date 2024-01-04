@@ -2,37 +2,15 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.background{
+  width: 100vw;
+  height: 100vh;
+  background-image: url("https://gamepress.gg/lostword/sites/lostword/files/2022-06/0260_%E3%83%90%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0%E3%83%BB%E3%83%A9%E3%83%96%E3%83%AC%E3%82%BF%E3%83%BC%EF%BC%9F.png");
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.page{
+  position: relative;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  top: 10%;
 }
