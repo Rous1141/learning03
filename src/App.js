@@ -7,7 +7,7 @@ function App() {
   return (
     <div className='App'>
       <div className="background">
-      <Page></Page>
+      <Page/>
       </div>
    </div>
   );
