@@ -43,7 +43,7 @@ export default function PeopleDetail() {
           </CardContent>
           <CardActions>
             <Button size="small"><Link to={`/`}>Return Home</Link></Button>
-            <Button size="small"><Link to={''}>Update Detail</Link></Button>
+            <Button size="small"><Link to={`/Update/${person.id}`}>Update Detail</Link></Button>
           </CardActions>
         </Card>
     </div>
