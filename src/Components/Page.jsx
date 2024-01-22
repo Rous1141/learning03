@@ -5,6 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { Link } from 'react-router-dom';
 import  axios  from 'axios';
 
 export default function Page() {
@@ -14,6 +15,7 @@ export default function Page() {
   const URL = "https://localhost:7049/api/people";
   const [apiData, SetApiData] = useState([]);
 
+  //Using normal Fetch javascript
   // useEffect(() => {
   // fetch(URL)
   //   .then(response => response.json())
@@ -25,6 +27,7 @@ export default function Page() {
   //   });
   // },[]);
 
+  //Using Axios methods to get API
   useEffect(() => {
       axios
       .get(URL)
@@ -54,8 +57,8 @@ export default function Page() {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="small">Share</Button>
-            <Button size="small">Learn More</Button>
+            <Button size="small"><Link>Share</Link></Button>
+            <Button size="small"><Link to={`/Details/${test.id}`}>Detail</Link></Button>
           </CardActions>
         </Card>
       ))}
