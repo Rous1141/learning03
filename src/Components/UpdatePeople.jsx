@@ -42,9 +42,10 @@ export default function UpdatePeople() {
     };
 
     //Get The PUT API and update
+    const [name,Setname] = useState()
     const [person,SetPerson] = useState([]);
     const {id} = useParams();
-    const URL = "https://localhost:7049/api/people/"+id;
+    const URL = "https://peopleapi1141.azurewebsites.net/api/people/" + id;
     useEffect (()=>{
     axios
     .get(URL)
@@ -55,8 +56,6 @@ export default function UpdatePeople() {
     if(person.id==null){
         return <LoadingScreen/>
     }
-    const [name,Setname] = useState()
-    
     const HandleOnChange = () =>{
 
     }

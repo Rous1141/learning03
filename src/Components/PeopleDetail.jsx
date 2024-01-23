@@ -8,11 +8,12 @@ import Typography from '@mui/material/Typography';
 import  axios  from 'axios';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import LoadingScreen from './LoadingScreen';
 
 export default function PeopleDetail() {
     const [person,SetPerson] = useState([]);
     let {id} = useParams();
-    const URL = "https://localhost:7049/api/people/" + id;
+    const URL = "https://peopleapi1141.azurewebsites.net/api/people/" + id;
 
     useEffect(()=>{
         axios
@@ -22,6 +23,9 @@ export default function PeopleDetail() {
         .catch(error => console.log('Something is wrong: ' + error))
     },)
 
+    if(person.id==null){
+      return <LoadingScreen/>
+  }
   return (
     <div className='page'>
         <Card key={person.id} className='card' sx={{ maxWidth: '70%' }}>

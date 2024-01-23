@@ -7,12 +7,13 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 import  axios  from 'axios';
+import LoadingScreen from './LoadingScreen';
 
 export default function Page() {
 
-  //const URL = "https://64abc0e79edb4181202e7649.mockapi.io/gensokyoPeps";
-  //const URL = "https://localhost:7042/api/TodoItems";
-  const URL = "https://localhost:7049/api/people";
+  //const URL = "https://64abc0e79edb4181202e7649.mockapi.io/gensokyoPeps"; - MockAPI data
+  //const URL = "https://localhost:7049/api/people"; - Local .NET API
+  const URL = "https://peopleapi1141.azurewebsites.net/api/people"; // - Online Azure Hosted .NET API
   const [apiData, SetApiData] = useState([]);
 
   //Using normal Fetch javascript
@@ -35,6 +36,11 @@ export default function Page() {
       .then(test => SetApiData(test))
       .catch(error => {console.log("Something is wrong:" + error);})
   },[]);
+
+  if(apiData.length==0){
+    return <LoadingScreen/>
+}
+
   return (
     <div className='page'>
 
