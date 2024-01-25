@@ -12,7 +12,7 @@ import LoadingScreen from './LoadingScreen';
 export default function Page() {
 
   //const URL = "https://64abc0e79edb4181202e7649.mockapi.io/gensokyoPeps"; - MockAPI data
-  //const URL = "https://localhost:7049/api/people"; - Local .NET API
+  //const URL = "https://localhost:7049/api/people"; //- Local .NET API
   const URL = "https://peopleapi1141.azurewebsites.net/api/people"; // - Online Azure Hosted .NET API
   const [apiData, SetApiData] = useState([]);
 
@@ -37,7 +37,7 @@ export default function Page() {
       .catch(error => {console.log("Something is wrong:" + error);})
   },[]);
 
-  if(apiData.length==0){
+  if(apiData.length===0){
     return <LoadingScreen/>
 }
 

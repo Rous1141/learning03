@@ -10,7 +10,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { useParams } from 'react-router-dom';
+import { redirect, useParams } from 'react-router-dom';
 import axios from 'axios';
 import LoadingScreen from './LoadingScreen';
 import Dialog from '@mui/material/Dialog';
@@ -57,28 +57,37 @@ export default function UpdatePeople() {
 
     const [person,SetPerson] = useState([]);
     const {id} = useParams();
+    //const URL = "https://localhost:7049/api/people/" + id; //- Local .NET API
     const URL = "https://peopleapi1141.azurewebsites.net/api/people/" + id;
-    useEffect (()=>{
+    useEffect (() =>{
     axios
     .get(URL)
     .then(response => response.data)
     .then(data => SetPerson(data))
     .catch(error => console.log(error))
-    },)
-    if(person.id==null){
+    });
+    while(person.id==null){
         return <LoadingScreen/>
     }
+    
+
+    const axiosConfig = {
+        headers: {
+          'Content-Type': 'application/json', // Make sure the content type matches what the server expects
+        },
+      };
       
     const handleSubmit = (event) =>{
         axios.put(URL,{
             id: person.id,
-            name: name,
-            age: age,
-            job: job,
-            image: image
-        })
-        .then(response => {console.log("Begin PUT method: ",response.data);})
-        .catch(error => console.log(error))
+            name: name!=null ? name : person.name,
+            age: age!=null ? age : person.age,
+            job: job!=null ? job : person.job,
+            image: image!=null ? image : person.image
+        },axiosConfig)
+        .then(response => {console.log("Complete PUT method!",response.data);})
+        .then(alert('Update Character Completed!'))
+        .catch(error => console.log("Error at: "+error))
         event.preventDefault(); 
         handleClose(event);
     }
@@ -107,6 +116,7 @@ export default function UpdatePeople() {
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={6}>
                                 <TextField 
+                                    
                                     onChange={event => Setname(event.target.value)}
                                     defaultValue = {person.name}
                                     name="fullName"
@@ -192,12 +202,11 @@ export default function UpdatePeople() {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Let Google help apps determine location. This means sending anonymous
-            location data to Google, even when no apps are running.
+            Are You Sure You Want To Update the Character?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
+          <Button onClick={handleClose}>Cancel</Button>
           <Button onClick={event => handleSubmit(event)} autoFocus>
             Agree
           </Button>

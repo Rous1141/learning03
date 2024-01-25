@@ -13,6 +13,7 @@ import LoadingScreen from './LoadingScreen';
 export default function PeopleDetail() {
     const [person,SetPerson] = useState([]);
     let {id} = useParams();
+    //const URL = "https://localhost:7049/api/people/" + id; //- Local .NET API
     const URL = "https://peopleapi1141.azurewebsites.net/api/people/" + id;
 
     useEffect(()=>{
