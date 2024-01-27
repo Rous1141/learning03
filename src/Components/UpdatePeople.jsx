@@ -10,7 +10,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { redirect, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import LoadingScreen from './LoadingScreen';
 import Dialog from '@mui/material/Dialog';
@@ -88,7 +88,7 @@ export default function UpdatePeople() {
         .then(response => {console.log("Complete PUT method!",response.data);})
         .then(alert('Update Character Completed!'))
         .catch(error => console.log("Error at: "+error))
-        event.preventDefault(); 
+        event.preventDefault();
         handleClose(event);
     }
     
@@ -198,7 +198,7 @@ export default function UpdatePeople() {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Use Google's location service?"}
+          {"Character Update?"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">

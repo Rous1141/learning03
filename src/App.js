@@ -6,6 +6,7 @@ import { Route, Routes } from 'react-router-dom';
 import PeopleDetail from './Components/PeopleDetail';
 import UpdatePeople from './Components/UpdatePeople';
 import Menu from './Components/Menu';
+import CreatePeople from './Components/CreatePeople';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path='/' element={<Page/>}></Route>
           <Route path='/Details/:id' element={<PeopleDetail/>}></Route>
           <Route path='/Update/:id' element={<UpdatePeople/>}></Route>
+          <Route path='/Create' element={<CreatePeople/>}></Route>
           </Routes>
       <Footer/>
       </div>

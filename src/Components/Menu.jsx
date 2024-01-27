@@ -28,6 +28,7 @@ export default function Menu() {
             Gensokyo
           </Typography>
           <Button color="inherit"><Link to={"/"}>Home</Link></Button>
+          <Button color="inherit"><Link to={"/Create"}>Create</Link></Button>
         </Toolbar>
       </AppBar>
     </Box>
