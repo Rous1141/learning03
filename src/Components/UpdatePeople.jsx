@@ -191,12 +191,12 @@ export default function UpdatePeople() {
             <p>{age}</p>
             <p>{job}</p>
 
-            <Dialog
+        <Dialog
         open={open}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
-      >
+        >
         <DialogTitle id="alert-dialog-title">
           {"Character Update?"}
         </DialogTitle>
