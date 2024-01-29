@@ -10,7 +10,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import LoadingScreen from './LoadingScreen';
 import Dialog from '@mui/material/Dialog';
@@ -32,22 +32,23 @@ function Copyright(props) {
         </Typography>
     );
 }
-// TODO remove, this demo shouldn't need to reset the theme.
-
+// TODO remove if you don't need a copyrights infridgment
 
 export default function UpdatePeople() {
     const [open, setOpen] = useState(false);
-
     const handleClickOpen = (event) => {
       event.preventDefault();
       setOpen(true);
     };
-  
     const handleClose = (event) => {
       event.preventDefault();
       setOpen(false);
     };
-
+    //Use Navigation to redirect them back to the profile page
+    const navigate = useNavigate();
+    const redirect = () => {
+        navigate(`/Details/${id}`);
+    }
     //Get The PUT API and update
     const [name,Setname] = useState();
     const [age,Setage] = useState();
@@ -86,7 +87,7 @@ export default function UpdatePeople() {
             image: image!=null ? image : person.image
         },axiosConfig)
         .then(response => {console.log("Complete PUT method!",response.data);})
-        .then(alert('Update Character Completed!'))
+        .then(redirect)
         .catch(error => console.log("Error at: "+error))
         event.preventDefault();
         handleClose(event);

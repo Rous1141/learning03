@@ -6,7 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import  axios  from 'axios';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import LoadingScreen from './LoadingScreen';
 import Dialog from '@mui/material/Dialog';
@@ -21,7 +21,11 @@ export default function PeopleDetail() {
     let {id} = useParams();
     //const URL = "https://localhost:7049/api/people/" + id; //- Local .NET API
     const URL = "https://peopleapi1141.azurewebsites.net/api/people/" + id;
+    const navigate = useNavigate();
 
+    const redirect = () =>{
+      navigate("/");
+    }
     useEffect(()=>{
         axios
         .get(URL)
@@ -43,13 +47,11 @@ export default function PeopleDetail() {
       try{
         axios.delete(URL)
         .then(response => {console.log("Delete Complete!",response.data)})
+        .then(redirect);
         
       }catch(error){
         console.log(error)
       }
-
-      SetOpen(false)
-      event.preventDefault();
     }
 
     if(person.id==null){

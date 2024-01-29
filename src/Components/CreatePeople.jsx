@@ -16,15 +16,19 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { useNavigate } from 'react-router-dom';
 
 export default function CreatePeople() {
   const [name,Setname] = useState();
   const [age,Setage] = useState();
   const [job,Setjob] = useState();
   const [image,Setimage] = useState();
-    const [open,SetOpen] = useState(false);
-    const URL = "https://peopleapi1141.azurewebsites.net/api/people";
-
+  const [open,SetOpen] = useState(false);
+  const URL = "https://peopleapi1141.azurewebsites.net/api/people";
+  const navigate = useNavigate();
+  const redirect = () => {
+    navigate(`/`);
+  }
     const axiosConfig = {
       headers: {
         'Content-Type': 'application/json', // Make sure the content type matches what the server expects
@@ -40,7 +44,7 @@ export default function CreatePeople() {
         image: image!=null ? image : "image"
       },axiosConfig)
       .then(response => {console.log("Completed!"+response.data)})
-      alert("Create Completed!")
+      .then(redirect)
       
     }catch(error){
       console.log(error)
