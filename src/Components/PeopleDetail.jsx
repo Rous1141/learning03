@@ -34,9 +34,6 @@ export default function PeopleDetail() {
         .then(data => {SetPerson(data);SetLoading(false)})
         .catch(error => console.log('Something is wrong: ' + error))
     },)
-    if(loading){
-      return <LoadingScreen/>
-  }
 
     const handleClick = (event) => {
       SetOpen(true)
@@ -57,27 +54,23 @@ export default function PeopleDetail() {
         console.log(error)
       }
     }
-
-    if(person.id==null){
-      return <LoadingScreen/>
-  }
-  return (
-    <div className='page'>
-        <Card key={person.id} className='card' sx={{ maxWidth: '70%' }}>
+function Characters(){
+        return(
+          <Card className='card' sx={{ maxWidth: '70%' }}>
           <CardMedia
             sx={{ height: 300 }}
-            image={person.image}
-            title={person.name}
+            image={person.image != null ? person.image : 'image'}
+            title={person.name != null ? person.name : "name"}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              {person.name}
+              {person.name != null ? person.name : "name"}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {person.age}
+              {person.age != null ? person.age : "age"}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {person.job}
+              {person.job != null ? person.job : "job"}
             </Typography>
           </CardContent>
           <CardActions>
@@ -86,8 +79,39 @@ export default function PeopleDetail() {
             <Button onClick={handleClick} sx={{color:"red"}} size="small">Delete</Button>
           </CardActions>
         </Card>
-
-        <Dialog
+        )
+       }
+function DefaultCards() {
+        return (
+          <Card className='card' sx={{ maxWidth: '70%' }}>
+            <CardMedia
+              sx={{ height: 300 }}
+              image="aaa.png"
+              title="name"
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                name
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                age
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                job
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Button size="small"><Link>Share</Link></Button>
+              <Button size="small"><Link>Detail</Link></Button>
+            </CardActions>
+          </Card>
+        )
+      }
+  return (
+    <div className='page' style={{marginBottom:'10vh'}}>
+      {loading ? <LoadingScreen/> : ''}
+      {loading ? <DefaultCards/> : <Characters/>}
+      <Dialog
         open={open}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"

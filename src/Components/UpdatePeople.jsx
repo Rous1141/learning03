@@ -3,8 +3,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -56,7 +54,6 @@ export default function UpdatePeople() {
     const [job,Setjob] = useState();
     const [image,Setimage] = useState();
     const [person,SetPerson] = useState([]);
-
     const {id} = useParams();
     //const URL = "https://localhost:7049/api/people/" + id; //- Local .NET API
     const URL = "https://peopleapi1141.azurewebsites.net/api/people/" + id;
@@ -67,10 +64,6 @@ export default function UpdatePeople() {
     .then(data => {SetPerson(data);SetLoading(false)})
     .catch(error => console.log(error))
     });
-    while(loading){
-        return <LoadingScreen/>
-    }
-    
 
     const axiosConfig = {
         headers: {
@@ -86,7 +79,7 @@ export default function UpdatePeople() {
             job: job!=null ? job : person.job,
             image: image!=null ? image : person.image
         },axiosConfig)
-        .then(response => {console.log("Complete PUT method!",response.data);})
+        .then(response => {console.log("Complete PUT method!",response.data);SetLoading(true)})
         .then(redirect)
         .catch(error => console.log("Error at: "+error))
         event.preventDefault();
@@ -95,8 +88,9 @@ export default function UpdatePeople() {
     
     //To get a constant update of an variable, use function event => SetState(event.target.value)
     return (
+        <>
+        {loading ? <LoadingScreen/> : ''}
         <div className='page'>
-            {loading ? <LoadingScreen/> : ''}
             <Container className='container' component="main" maxWidth="xs">
                 <CssBaseline />
                 <Box
@@ -108,7 +102,7 @@ export default function UpdatePeople() {
                     }}
                 >
                     <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                        <img alt='character' style={{objectFit:"fill"}} src = {person.image != null ? person.image : 'null'} ></img>
+                        <img alt='character' style={{objectFit:"fill"}} src = {person.image != null ? person.image : 'image'} ></img>
                     </Avatar>
                     <Typography component="h1" variant="h5">
                         Update The Character
@@ -117,9 +111,9 @@ export default function UpdatePeople() {
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={6}>
                                 <TextField 
-                                    
                                     onChange={event => Setname(event.target.value)}
-                                    defaultValue = {person.name !=null ? person.name : 'null'}
+                                    value={name ==null ? person.name : name}
+                                    defaultValue = {'name'}
                                     name="fullName"
                                     required
                                     fullWidth
@@ -129,8 +123,9 @@ export default function UpdatePeople() {
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
-                                    onChange={event => Setage(event.target.value)}
-                                    defaultValue = {person.age !=null ? person.age : 1}
+                                    onChange={event => {Setage(event.target.value)}}
+                                    value={age ==null ? person.age : 1}
+                                    defaultValue = {1}
                                     required
                                     fullWidth
                                     id="age"
@@ -141,7 +136,8 @@ export default function UpdatePeople() {
                             <Grid item xs={12}>
                                 <TextField
                                     onChange={event => Setjob(event.target.value)}
-                                    defaultValue = {person.job !=null ? person.job : "job"}
+                                    value={job ==null ? person.job : "job"}
+                                    defaultValue = {"job"}
                                     required
                                     fullWidth
                                     id="job"
@@ -153,7 +149,8 @@ export default function UpdatePeople() {
                             <Grid item xs={12}>
                                 <TextField
                                     onChange={event => Setimage(event.target.value)}
-                                    defaultValue = {person.image !=null ? person.image : 'image'}
+                                    value={image ==null ? person.image : "image"}
+                                    defaultValue = {'image'}
                                     required
                                     fullWidth
                                     name="imageurl"
@@ -161,12 +158,6 @@ export default function UpdatePeople() {
                                     type="imageurl"
                                     id="imageurl"
                                     
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <FormControlLabel
-                                    control={<Checkbox value="allowExtraEmails" color="primary" />}
-                                    label="I want to receive inspiration, marketing promotions and updates via email."
                                 />
                             </Grid>
                         </Grid>
@@ -210,5 +201,6 @@ export default function UpdatePeople() {
         </DialogActions>
       </Dialog>
         </div>
+        </>
     );
 }

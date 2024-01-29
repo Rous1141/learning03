@@ -6,7 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
-import  axios  from 'axios';
+import axios from 'axios';
 import LoadingScreen from './LoadingScreen';
 
 export default function Page() {
@@ -15,7 +15,7 @@ export default function Page() {
   //const URL = "https://localhost:7049/api/people"; //- Local .NET API
   const URL = "https://peopleapi1141.azurewebsites.net/api/people"; // - Online Azure Hosted .NET API
   const [apiData, SetApiData] = useState([]);
-  const [loading,SetLoading] = useState(true);
+  const [loading, SetLoading] = useState(true);
   //Using normal Fetch javascript
   // useEffect(() => {
   // fetch(URL)
@@ -27,49 +27,76 @@ export default function Page() {
   //     console.log("Something is wrong:" + error);
   //   });
   // },[]);
-
   //Using Axios methods to get API
   useEffect(() => {
-      axios
+    axios
       .get(URL)
       .then(response => response.data)
-      .then(test => {SetApiData(test);SetLoading(false)})
-      .catch(error => {console.log("Something is wrong:" + error);})
-  },[]);
+      .then(test => { SetApiData(test); SetLoading(false) })
+      .catch(error => { console.log("Something is wrong:" + error); })
+  }, []);
+  function ViewCards() {
+    return (
+      <>
+        {apiData.map((test) => (
+          <Card key={test.id} className='card' sx={{ maxWidth: '70%' }}>
+            <CardMedia
+              sx={{ height: 300 }}
+              image={test.image}
+              title={test.name}
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                {test.name}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {test.age}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {test.job}
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Button size="small"><Link>Share</Link></Button>
+              <Button size="small"><Link to={`/Details/${test.id}`}>Detail</Link></Button>
+            </CardActions>
+          </Card>
+        ))}
+      </>
+    )
+  }
 
-
-  if(loading){
-    return <LoadingScreen/>
-}
+  function DefaultCards() {
+    return (
+      <Card className='card' sx={{ maxWidth: '70%' }}>
+        <CardMedia
+          sx={{ height: 300 }}
+          image="aaa.png"
+          title="name"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            name
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            age
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            job
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button size="small"><Link>Share</Link></Button>
+          <Button size="small"><Link>Detail</Link></Button>
+        </CardActions>
+      </Card>
+    )
+  }
 
   return (
     <div className='page'>
-
-      {apiData.map((test) => (
-        <Card key={test.id} className='card' sx={{ maxWidth: '70%' }}>
-          <CardMedia
-            sx={{ height: 300 }}
-            image={test.image}
-            title={test.name}
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              {test.name}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {test.age}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {test.job}
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Button size="small"><Link>Share</Link></Button>
-            <Button size="small"><Link to={`/Details/${test.id}`}>Detail</Link></Button>
-          </CardActions>
-        </Card>
-      ))}
-
+      {loading ? <LoadingScreen /> : ''}
+      {loading ? <DefaultCards/> : <ViewCards/>}
     </div>
   )
 }
