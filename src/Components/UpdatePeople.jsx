@@ -36,6 +36,7 @@ function Copyright(props) {
 
 export default function UpdatePeople() {
     const [open, setOpen] = useState(false);
+    const [loading,SetLoading] = useState(true);
     const handleClickOpen = (event) => {
       event.preventDefault();
       setOpen(true);
@@ -54,9 +55,8 @@ export default function UpdatePeople() {
     const [age,Setage] = useState();
     const [job,Setjob] = useState();
     const [image,Setimage] = useState();
-     
-
     const [person,SetPerson] = useState([]);
+
     const {id} = useParams();
     //const URL = "https://localhost:7049/api/people/" + id; //- Local .NET API
     const URL = "https://peopleapi1141.azurewebsites.net/api/people/" + id;
@@ -64,10 +64,10 @@ export default function UpdatePeople() {
     axios
     .get(URL)
     .then(response => response.data)
-    .then(data => SetPerson(data))
+    .then(data => {SetPerson(data);SetLoading(false)})
     .catch(error => console.log(error))
     });
-    while(person.id==null){
+    while(loading){
         return <LoadingScreen/>
     }
     
@@ -96,9 +96,9 @@ export default function UpdatePeople() {
     //To get a constant update of an variable, use function event => SetState(event.target.value)
     return (
         <div className='page'>
+            {loading ? <LoadingScreen/> : ''}
             <Container className='container' component="main" maxWidth="xs">
                 <CssBaseline />
-                
                 <Box
                     sx={{
                         marginTop: 8,
@@ -108,7 +108,7 @@ export default function UpdatePeople() {
                     }}
                 >
                     <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                        <img alt='character' style={{objectFit:"fill"}} src = {person.image} ></img>
+                        <img alt='character' style={{objectFit:"fill"}} src = {person.image != null ? person.image : 'null'} ></img>
                     </Avatar>
                     <Typography component="h1" variant="h5">
                         Update The Character
@@ -119,7 +119,7 @@ export default function UpdatePeople() {
                                 <TextField 
                                     
                                     onChange={event => Setname(event.target.value)}
-                                    defaultValue = {person.name}
+                                    defaultValue = {person.name !=null ? person.name : 'null'}
                                     name="fullName"
                                     required
                                     fullWidth
@@ -130,7 +130,7 @@ export default function UpdatePeople() {
                             <Grid item xs={12} sm={6}>
                                 <TextField
                                     onChange={event => Setage(event.target.value)}
-                                    defaultValue = {person.age}
+                                    defaultValue = {person.age !=null ? person.age : 1}
                                     required
                                     fullWidth
                                     id="age"
@@ -141,7 +141,7 @@ export default function UpdatePeople() {
                             <Grid item xs={12}>
                                 <TextField
                                     onChange={event => Setjob(event.target.value)}
-                                    defaultValue = {person.job}
+                                    defaultValue = {person.job !=null ? person.job : "job"}
                                     required
                                     fullWidth
                                     id="job"
@@ -153,7 +153,7 @@ export default function UpdatePeople() {
                             <Grid item xs={12}>
                                 <TextField
                                     onChange={event => Setimage(event.target.value)}
-                                    defaultValue = {person.image}
+                                    defaultValue = {person.image !=null ? person.image : 'image'}
                                     required
                                     fullWidth
                                     name="imageurl"
@@ -187,10 +187,6 @@ export default function UpdatePeople() {
                 
                 <Copyright sx={{ mt: 5 }} />
             </Container>
-
-            <p>{name}</p>
-            <p>{age}</p>
-            <p>{job}</p>
 
         <Dialog
         open={open}

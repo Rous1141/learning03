@@ -4,7 +4,7 @@ import { Container, Grid, Typography } from '@mui/material';
 
 export default function Footer() {
   return (
-    <footer style={{ backgroundColor: '#0096FA', color: '#fff', padding: '20px 0' }}>
+    <footer style={{ zIndex:'1',backgroundColor: '#0096FA', color: '#fff', padding: '20px 0' }}>
       <Container>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={4} style={{ float: 'left' }}>

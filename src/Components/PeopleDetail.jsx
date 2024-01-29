@@ -18,6 +18,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 export default function PeopleDetail() {
     const [person,SetPerson] = useState([]);
     const [open,SetOpen] = useState(false);
+    const [loading,SetLoading] = useState(true);
     let {id} = useParams();
     //const URL = "https://localhost:7049/api/people/" + id; //- Local .NET API
     const URL = "https://peopleapi1141.azurewebsites.net/api/people/" + id;
@@ -30,9 +31,12 @@ export default function PeopleDetail() {
         axios
         .get(URL)
         .then(response => response.data)
-        .then(data => SetPerson(data))
+        .then(data => {SetPerson(data);SetLoading(false)})
         .catch(error => console.log('Something is wrong: ' + error))
     },)
+    if(loading){
+      return <LoadingScreen/>
+  }
 
     const handleClick = (event) => {
       SetOpen(true)

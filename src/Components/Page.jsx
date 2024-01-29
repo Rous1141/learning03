@@ -15,7 +15,7 @@ export default function Page() {
   //const URL = "https://localhost:7049/api/people"; //- Local .NET API
   const URL = "https://peopleapi1141.azurewebsites.net/api/people"; // - Online Azure Hosted .NET API
   const [apiData, SetApiData] = useState([]);
-
+  const [loading,SetLoading] = useState(true);
   //Using normal Fetch javascript
   // useEffect(() => {
   // fetch(URL)
@@ -33,11 +33,12 @@ export default function Page() {
       axios
       .get(URL)
       .then(response => response.data)
-      .then(test => SetApiData(test))
+      .then(test => {SetApiData(test);SetLoading(false)})
       .catch(error => {console.log("Something is wrong:" + error);})
   },[]);
 
-  if(apiData.length===0){
+
+  if(loading){
     return <LoadingScreen/>
 }
 

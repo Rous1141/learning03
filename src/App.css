@@ -35,3 +35,16 @@ a{
   color: inherit;
 }
 
+.loadingscreen{
+  z-index: 90000;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.9);
+  width: 100vw;
+  height: 100vh;
+}
+
+.loading{
+  margin: auto; 
+}
