@@ -3,7 +3,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 
-And this is the project deployemnt with Vercel: [Vercel Web](https://learning03.vercel.app).
+And this is the project deployement with Vercel: [Vercel Web](https://learning03.vercel.app).
 
 ## Available Scripts
 
