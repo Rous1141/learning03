@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Container, Grid, Typography } from '@mui/material';
-
+import { ThemeContext } from './Themes/ThemeProvider.tsx';
 
 export default function Footer() {
+  const {theme} = useContext(ThemeContext)
   return (
-    <footer style={{bottom:'0',backgroundColor: '#0096FA', color: '#fff', padding: '20px 0' }}>
+    <footer style={{bottom:'0',backgroundColor: theme.backgroundColor, color: theme.color, padding: '20px 0' }}>
       <Container>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={4} style={{ float: 'left' }}>

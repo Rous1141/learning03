@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import LoadingScreen from './LoadingScreen';
+import { ThemeContext } from './Themes/ThemeProvider.tsx';
 
 export default function Page() {
 
@@ -16,6 +17,7 @@ export default function Page() {
   const URL = "https://peopleapi1141.azurewebsites.net/api/people"; // - Online Azure Hosted .NET API
   const [apiData, SetApiData] = useState([]);
   const [loading, SetLoading] = useState(true);
+  const {theme} = useContext(ThemeContext);
   //Using normal Fetch javascript
   // useEffect(() => {
   // fetch(URL)
@@ -39,26 +41,33 @@ export default function Page() {
     return (
       <>
         {apiData.map((test) => (
-          <Card key={test.id} className='card' sx={{ maxWidth: '70%' }}>
+          <Card key={test.id} className='card' 
+          sx={{
+            color:theme.color, 
+            maxWidth: '70%' ,
+            backgroundColor:theme.backgroundColor, 
+            transition:theme.transition,
+            
+          }}>
             <CardMedia
               sx={{ height: 300 }}
               image={test.image}
               title={test.name}
             />
             <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
+              <Typography gutterBottom variant="h5" component="div" color='inherit'>
                 {test.name}
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant="body2" color="inherit">
                 {test.age}
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant="body2" color="inherit">
                 {test.job}
               </Typography>
             </CardContent>
             <CardActions>
-              <Button size="small"><Link>Share</Link></Button>
-              <Button size="small"><Link to={`/Details/${test.id}`}>Detail</Link></Button>
+              <Button style={{marginRight:'auto'}} size="small"><Link>Share</Link></Button>
+              <Button style={{marginLeft:'auto'}} size="small"><Link to={`/Details/${test.id}`}>Detail</Link></Button>
             </CardActions>
           </Card>
         ))}
@@ -68,7 +77,7 @@ export default function Page() {
 
   function DefaultCards() {
     return (
-      <Card className='card' sx={{ maxWidth: '70%' }}>
+      <Card className='card' sx={{ maxWidth: '70%',backgroundColor:theme.backgroundColor }}>
         <CardMedia
           sx={{ height: 300 }}
           image="aaa.png"
@@ -81,13 +90,13 @@ export default function Page() {
           <Typography variant="body2" color="text.secondary">
             age
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography  variant="body2" color="text.secondary">
             job
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small"><Link>Share</Link></Button>
-          <Button size="small"><Link>Detail</Link></Button>
+          <Button color='inherit' size="small"><Link>Share</Link></Button>
+          <Button color='inherit' size="small"><Link>Detail</Link></Button>
         </CardActions>
       </Card>
     )

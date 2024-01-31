@@ -1,9 +1,6 @@
-import {React, useState, useEffect} from 'react';
+import {React, useState, useEffect, useContext} from 'react';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -16,25 +13,16 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { ThemeContext } from './Themes/ThemeProvider.tsx';
+import CustomizedTextField from './StyledMUI/CustomizedTextField.tsx'
+import CustomizedButton from './StyledMUI/CustomizedButton.tsx'
 
-//Have to keep the MUI copyrights for now
-function Copyright(props) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
-// TODO remove if you don't need a copyrights infridgment
+
 
 export default function UpdatePeople() {
     const [open, setOpen] = useState(false);
     const [loading,SetLoading] = useState(true);
+    const {theme} = useContext(ThemeContext);
     const handleClickOpen = (event) => {
       event.preventDefault();
       setOpen(true);
@@ -91,7 +79,7 @@ export default function UpdatePeople() {
         <>
         {loading ? <LoadingScreen/> : ''}
         <div className='page'>
-            <Container className='container' component="main" maxWidth="xs">
+            <Container sx={{backgroundColor:theme.backgroundColor,color:theme.color}} className='container' component="main" maxWidth="xs">
                 <CssBaseline />
                 <Box
                     sx={{
@@ -104,13 +92,13 @@ export default function UpdatePeople() {
                     <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                         <img alt='character' style={{objectFit:"fill"}} src = {person.image != null ? person.image : 'image'} ></img>
                     </Avatar>
-                    <Typography component="h1" variant="h5">
+                    <Typography component="h1" variant="h5" color='inherit'>
                         Update The Character
                     </Typography>
                     <Box component="form" noValidate onSubmit={event => handleClickOpen(event)} sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={6}>
-                                <TextField 
+                                <CustomizedTextField
                                     onChange={event => Setname(event.target.value)}
                                     value={name ==null ? person.name : name}
                                     defaultValue = {'name'}
@@ -122,7 +110,7 @@ export default function UpdatePeople() {
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
-                                <TextField
+                                <CustomizedTextField
                                     onChange={event => {Setage(event.target.value)}}
                                     value={age ==null ? person.age : 1}
                                     defaultValue = {1}
@@ -134,7 +122,7 @@ export default function UpdatePeople() {
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField
+                                <CustomizedTextField
                                     onChange={event => Setjob(event.target.value)}
                                     value={job ==null ? person.job : "job"}
                                     defaultValue = {"job"}
@@ -147,7 +135,7 @@ export default function UpdatePeople() {
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField
+                                <CustomizedTextField
                                     onChange={event => Setimage(event.target.value)}
                                     value={image ==null ? person.image : "image"}
                                     defaultValue = {'image'}
@@ -161,43 +149,38 @@ export default function UpdatePeople() {
                                 />
                             </Grid>
                         </Grid>
-                        <Button
+                        <CustomizedButton
+                            label="Update"
                             type="submit"
                             fullWidth
                             variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
+                            sx={{mt: 3, mb: 2 }}
                         >
-                            Update
-                        </Button>
+                        </CustomizedButton>
                         <Grid container justifyContent="flex-end">
                             <Grid item>
                             </Grid>
                         </Grid>
                     </Box>
                 </Box>
-                
-                <Copyright sx={{ mt: 5 }} />
             </Container>
 
         <Dialog
         open={open}
         onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
+        sx={{background:theme.backgroundColor}}
         >
-        <DialogTitle id="alert-dialog-title">
+        <DialogTitle>
           {"Character Update?"}
         </DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
+          <DialogContentText>
             Are You Sure You Want To Update the Character?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={event => handleSubmit(event)} autoFocus>
-            Agree
-          </Button>
+          <CustomizedButton onClick={handleClose} label="Cancel"></CustomizedButton>
+          <CustomizedButton onClick={event => handleSubmit(event)} label="Agree" autoFocus></CustomizedButton>
         </DialogActions>
       </Dialog>
         </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -14,11 +14,13 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import {ThemeContext} from './Themes/ThemeProvider.tsx'
 
 export default function PeopleDetail() {
     const [person,SetPerson] = useState([]);
     const [open,SetOpen] = useState(false);
     const [loading,SetLoading] = useState(true);
+    const {theme} = useContext(ThemeContext);
     let {id} = useParams();
     //const URL = "https://localhost:7049/api/people/" + id; //- Local .NET API
     const URL = "https://peopleapi1141.azurewebsites.net/api/people/" + id;
@@ -56,7 +58,7 @@ export default function PeopleDetail() {
     }
 function Characters(){
         return(
-          <Card className='card' sx={{ maxWidth: '70%' }}>
+          <Card className='card' sx={{ maxWidth: '70%',backgroundColor:theme.backgroundColor,color:theme.color,transition:theme.transition}}>
           <CardMedia
             sx={{ height: 300 }}
             image={person.image != null ? person.image : 'image'}
@@ -66,10 +68,10 @@ function Characters(){
             <Typography gutterBottom variant="h5" component="div">
               {person.name != null ? person.name : "name"}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" color="inherit">
               {person.age != null ? person.age : "age"}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" color="inherit">
               {person.job != null ? person.job : "job"}
             </Typography>
           </CardContent>

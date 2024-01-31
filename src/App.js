@@ -7,11 +7,13 @@ import PeopleDetail from './Components/PeopleDetail';
 import UpdatePeople from './Components/UpdatePeople';
 import Menu from './Components/Menu';
 import CreatePeople from './Components/CreatePeople';
-
+import { ThemeContext } from './Components/Themes/ThemeProvider.tsx';
+import { useContext } from 'react';
 function App() {
+  const {theme} = useContext(ThemeContext)
   return (
     <div className='App'>
-      <div className="background">
+      <div className="background" style={{backgroundImage:theme.backgroundImage,transition:theme.transition}}>
         <Menu/>
         <Routes>
           <Route path='/' element={<Page/>}></Route>

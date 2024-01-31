@@ -6,14 +6,16 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-image: url("https://gamepress.gg/lostword/sites/lostword/files/2022-06/0260_%E3%83%90%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0%E3%83%BB%E3%83%A9%E3%83%96%E3%83%AC%E3%82%BF%E3%83%BC%EF%BC%9F.png");
-  
 }
 
 .page{
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.card:first-child{
+  margin-top: 10%;
 }
 
 .card{
@@ -24,7 +26,7 @@
 }
 
 .container{
-  margin-top: 5%;
+  margin-top: 10%;
   margin-bottom: 5%;
   background-color: aliceblue;
 }
