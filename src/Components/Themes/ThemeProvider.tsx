@@ -32,19 +32,26 @@ const Theme = {
 const initialState = {
   dark: false,
   theme: Theme.light,
-  toggleTheme: () => {}
+  change: false,
+  toggleTheme: () => {},
+  switchImage: () => {},
 }
 
 const ThemeContext = React.createContext(initialState);
 
 function ThemeProvider({children}) {
   const [dark,SetDark] = useState(false)
+  const [change,SetChange] = useState(false)
   const toggleTheme = () => {
     !dark ? SetDark(true) : SetDark(false)
+    SetChange(true)
+  }
+  const switchImage = () =>{
+    SetChange(false)
   }
   const theme = dark ? Theme.dark : Theme.light
   return (
-    <ThemeContext.Provider value={{theme,dark,toggleTheme}}>
+    <ThemeContext.Provider value={{theme,dark,change,toggleTheme,switchImage}}>
       {children}
     </ThemeContext.Provider>
   )

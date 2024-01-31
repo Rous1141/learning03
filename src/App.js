@@ -10,26 +10,28 @@ import CreatePeople from './Components/CreatePeople';
 import { ThemeContext } from './Components/Themes/ThemeProvider.tsx';
 import { useContext,useState,useEffect } from 'react';
 function App() {
-  const {theme} = useContext(ThemeContext)
+  const {theme,change,switchImage} = useContext(ThemeContext)
   const [currentIndex,SetIndex] = useState(0)
-  const listofimages=theme.backgroundImage;
+  var listofimages=theme.backgroundImage;
   useEffect(() =>{
       const intervalId = setInterval(()=>{
+        // eslint-disable-next-line
+        if(change){listofimages=theme.backgroundImage;SetIndex(listofimages.length-1);switchImage()};
         if(currentIndex === listofimages.length - 1) {
           SetIndex(0);
       } 
       else {
         SetIndex(currentIndex + 1);
       }
-      },5000)
+      },2000)
       return () => clearInterval(intervalId);
   },)
 
   return (
     <div className='App'>
-      <div className="background" style={{backgroundImage:`url('${listofimages[currentIndex]}')`,transition:theme.transition}}>
+      <div className="background" style={{transition:theme.transition,backgroundImage:`url('${listofimages[currentIndex]}')`}}>
         <Menu/>
-        <Routes>
+          <Routes>
           <Route path='/' element={<Page/>}></Route>
           <Route path='/Details/:id' element={<PeopleDetail/>}></Route>
           <Route path='/Update/:id' element={<UpdatePeople/>}></Route>
