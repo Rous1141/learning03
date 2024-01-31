@@ -16,14 +16,14 @@ function App() {
   useEffect(() =>{
       const intervalId = setInterval(()=>{
         // eslint-disable-next-line
-        if(change){listofimages=theme.backgroundImage;SetIndex(listofimages.length-1);switchImage()};
+        if(change){listofimages=theme.backgroundImage;SetIndex(listofimages.length-1);switchImage();};
         if(currentIndex === listofimages.length - 1) {
           SetIndex(0);
       } 
       else {
         SetIndex(currentIndex + 1);
       }
-      },2000)
+      },5000)
       return () => clearInterval(intervalId);
   },)
 

@@ -26,7 +26,7 @@ export default function Menu() {
             >
               <MenuIcon />
             </IconButton>
-            <Typography color="inherit" variant="h5" component="div" sx={{flexGrow: 1 }}>
+            <Typography color="inherit" variant="h5" component="div" sx={{flexGrow: 1, fontFamily:theme.fontFamily}}>
               Gensokyo
             </Typography>
             <Button color="inherit"><Link to={"/"}>Home</Link></Button>
