@@ -29,16 +29,18 @@ function App() {
 
   return (
     <div className='App'>
-      <div className="background" style={{backgroundImage:`url('${listofimages[currentIndex]}')`,transition:theme.transition}}>
+      
         <Menu/>
+        <div className="background" style={{backgroundImage:`url('${listofimages[currentIndex]}')`,transition:theme.transition}}>
           <Routes>
           <Route path='/' element={<Page/>}></Route>
           <Route path='/Details/:id' element={<PeopleDetail/>}></Route>
           <Route path='/Update/:id' element={<UpdatePeople/>}></Route>
           <Route path='/Create' element={<CreatePeople/>}></Route>
           </Routes>
+          </div>
       <Footer/>
-      </div>
+     
    </div>
   );
 }
