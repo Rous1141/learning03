@@ -16,20 +16,20 @@ function App() {
   useEffect(() =>{
       const intervalId = setInterval(()=>{
         // eslint-disable-next-line
-        if(change){listofimages=theme.backgroundImage;SetIndex(listofimages.length-1);switchImage();};
+        if(change){listofimages=theme.backgroundImage;SetIndex(0);switchImage();};
         if(currentIndex === listofimages.length - 1) {
           SetIndex(0);
       } 
       else {
         SetIndex(currentIndex + 1);
       }
-      },5000)
+      },2000)
       return () => clearInterval(intervalId);
-  },)
+  })
 
   return (
     <div className='App'>
-      <div className="background" style={{transition:theme.transition,backgroundImage:`url('${listofimages[currentIndex]}')`}}>
+      <div className="background" style={{backgroundImage:`url('${listofimages[currentIndex]}')`,transition:theme.transition}}>
         <Menu/>
           <Routes>
           <Route path='/' element={<Page/>}></Route>
