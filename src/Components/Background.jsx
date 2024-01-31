@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Background() {
+export default function Background({...prop}) {
   return (
     <div className='background'>
-        aaaa
+      
     </div>
   )
 }

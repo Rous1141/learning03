@@ -14,8 +14,6 @@ function CustomizedTextField({ label, ...props })  {
       />
     );
   }
-
-
   const useStyles = makeStyles(({
     darkTextField: {
       '& .MuiInputBase-input': {
