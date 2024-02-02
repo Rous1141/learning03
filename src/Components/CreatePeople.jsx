@@ -76,7 +76,7 @@ export default function CreatePeople() {
               <AccountCircleIcon/>
             </Avatar>
             <Typography component="h1" variant="h5">
-                Update The Character
+                Create New Character
             </Typography>
             <Box component="form" noValidate onSubmit={event => handleClickOpen(event)} sx={{ mt: 3 }}>
                 <Grid container spacing={2}>

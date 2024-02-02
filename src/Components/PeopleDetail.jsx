@@ -20,7 +20,7 @@ export default function PeopleDetail() {
     const [person,SetPerson] = useState([]);
     const [open,SetOpen] = useState(false);
     const [loading,SetLoading] = useState(true);
-    const {theme} = useContext(ThemeContext);
+    const {theme,switchImage} = useContext(ThemeContext);
     let {id} = useParams();
     //const URL = "https://localhost:7049/api/people/" + id; //- Local .NET API
     const URL = "https://peopleapi1141.azurewebsites.net/api/people/" + id;
@@ -76,8 +76,8 @@ function Characters(){
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="small"><Link to={`/`}>Return Home</Link></Button>
-            <Button size="small"><Link to={`/Update/${person.id}`}>Update Detail</Link></Button>
+            <Button onClick={switchImage()} size="small"><Link to={`/`}>Return Home</Link></Button>
+            <Button onClick={switchImage()} size="small"><Link to={`/Update/${person.id}`}>Update Detail</Link></Button>
             <Button onClick={handleClick} sx={{color:"red"}} size="small">Delete</Button>
           </CardActions>
         </Card>
@@ -88,7 +88,7 @@ function DefaultCards() {
           <Card className='card' sx={{ maxWidth: '70%' }}>
             <CardMedia
               sx={{ height: 300 }}
-              image="aaa.png"
+              image="https://gamepress.gg/lostword/sites/lostword/files/2022-02/321.png"
               title="name"
             />
             <CardContent>
@@ -110,7 +110,7 @@ function DefaultCards() {
         )
       }
   return (
-    <div className='page' style={{marginBottom:'10vh'}}>
+    <div className='page' style={{}}>
       {loading ? <LoadingScreen/> : ''}
       {loading ? <DefaultCards/> : <Characters/>}
       <Dialog

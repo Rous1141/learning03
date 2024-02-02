@@ -19,7 +19,6 @@ export default function Background() {
   },)
   return (
     <div className='background' style={{backgroundImage:`url('${listofimages[currentIndex]}')`,transition:theme.transition}}>
-      AAAAAA
     </div>
   )
 }

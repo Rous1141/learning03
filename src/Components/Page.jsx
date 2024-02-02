@@ -80,7 +80,7 @@ export default function Page() {
       <Card className='card' sx={{ maxWidth: '70%',backgroundColor:theme.backgroundColor }}>
         <CardMedia
           sx={{ height: 300 }}
-          image="aaa.png"
+          image="https://gamepress.gg/lostword/sites/lostword/files/2022-02/321.png"
           title="name"
         />
         <CardContent>

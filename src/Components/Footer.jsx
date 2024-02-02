@@ -5,7 +5,7 @@ import { ThemeContext } from './Themes/ThemeProvider.tsx';
 export default function Footer() {
   const {theme} = useContext(ThemeContext)
   return (
-    <footer style={{bottom:'0',backgroundColor: theme.backgroundColor, color: theme.color, padding: '20px 0' }}>
+    <footer style={{backgroundColor: theme.backgroundColor, color: theme.color, padding: 'auto' }}>
       <Container>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={4} style={{ float: 'left' }}>
