@@ -34,7 +34,7 @@ export default function UpdatePeople() {
     //Use Navigation to redirect them back to the profile page
     const navigate = useNavigate();
     const redirect = () => {
-        navigate(`/Details/${id}`);
+        navigate(`/characters/${id}`);
     }
     //Get The PUT API and update
     const [name,Setname] = useState();
@@ -99,7 +99,7 @@ export default function UpdatePeople() {
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={6}>
                                 <CustomizedTextField
-                                    onChange={event => Setname(event.target.value)}
+                                    onChange={event => {Setname(event.target.value)}}
                                     value={name ==null ? person.name : name}
                                     defaultValue = {'name'}
                                     name="fullName"
@@ -112,7 +112,7 @@ export default function UpdatePeople() {
                             <Grid item xs={12} sm={6}>
                                 <CustomizedTextField
                                     onChange={event => {Setage(event.target.value)}}
-                                    value={age ==null ? person.age : 1}
+                                    value={age ==null ? person.age : age}
                                     defaultValue = {1}
                                     required
                                     fullWidth
@@ -123,21 +123,20 @@ export default function UpdatePeople() {
                             </Grid>
                             <Grid item xs={12}>
                                 <CustomizedTextField
-                                    onChange={event => Setjob(event.target.value)}
-                                    value={job ==null ? person.job : "job"}
+                                    onChange={event => {Setjob(event.target.value)}}
+                                    value={job ==null ? person.job : job}
                                     defaultValue = {"job"}
                                     required
                                     fullWidth
                                     id="job"
                                     label="Job"
                                     name="job"
-                                    
                                 />
                             </Grid>
                             <Grid item xs={12}>
                                 <CustomizedTextField
-                                    onChange={event => Setimage(event.target.value)}
-                                    value={image ==null ? person.image : "image"}
+                                    onChange={event => {Setimage(event.target.value)}}
+                                    value={image ==null ? person.image : image}
                                     defaultValue = {'image'}
                                     required
                                     fullWidth
@@ -145,7 +144,6 @@ export default function UpdatePeople() {
                                     label="Image URL"
                                     type="imageurl"
                                     id="imageurl"
-                                    
                                 />
                             </Grid>
                         </Grid>

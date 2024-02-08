@@ -27,7 +27,7 @@ export default function PeopleDetail() {
     const navigate = useNavigate();
 
     const redirect = () =>{
-      navigate("/");
+      navigate("/characters");
     }
     useEffect(()=>{
         axios
