@@ -23,7 +23,7 @@ export default function PeopleDetail() {
     const {theme,switchImage} = useContext(ThemeContext);
     let {id} = useParams();
     //const URL = "https://localhost:7049/api/people/" + id; //- Local .NET API
-    const URL = "https://peopleapi1141.azurewebsites.net/api/people/" + id;
+    const URL = "https://peopleapi1141.azurewebsites.net/api/people/" + id; // Cloud .NET API
     const navigate = useNavigate();
 
     const redirect = () =>{
