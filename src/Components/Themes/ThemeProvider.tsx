@@ -20,14 +20,14 @@ const Theme = {
     color:'#0096FA',
     backgroundColor:'#FFF',
     backgroundImage: lightimages,
-    transition: '0.5s ease-in-out',
+    transition: "all 1s ease-in-out",
 
   },
   dark:{
     color:'#61dafb',
     backgroundColor:'#1a1a2e',
     backgroundImage: darkimages,
-    transition: '0.5s ease-in-out',
+    transition: "all 1s ease-in-out",
   },
 }
 

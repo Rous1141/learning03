@@ -13,9 +13,9 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { ThemeContext } from './Themes/ThemeProvider.tsx';
-import CustomizedTextField from './StyledMUI/CustomizedTextField.tsx'
-import CustomizedButton from './StyledMUI/CustomizedButton.tsx'
+import { ThemeContext } from '../Themes/ThemeProvider.tsx';
+import CustomizedTextField from '../StyledMUI/CustomizedTextField.tsx'
+import CustomizedButton from '../StyledMUI/CustomizedButton.tsx'
 
 
 

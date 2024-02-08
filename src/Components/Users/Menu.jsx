@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
-import { ThemeContext } from './Themes/ThemeProvider.tsx';
+import { ThemeContext } from '../Themes/ThemeProvider.tsx';
 
 
 export default function Menu() {
@@ -30,7 +30,7 @@ export default function Menu() {
               Gensokyo
             </Typography>
             <Button color="inherit"><Link to={"/"}>Home</Link></Button>
-            <Button color="inherit"><Link to={"/Create"}>Create</Link></Button>
+            <Button color="inherit"><Link to={"create"}>Create</Link></Button>
             <Button color="inherit" onClick={toggleTheme}>{dark?"Dark":"Light"}</Button>
           </Toolbar>
         </AppBar>

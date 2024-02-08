@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import LoadingScreen from './LoadingScreen';
-import { ThemeContext } from './Themes/ThemeProvider.tsx';
+import { ThemeContext } from '../Themes/ThemeProvider.tsx';
 
 export default function Page() {
 
@@ -18,6 +18,7 @@ export default function Page() {
   const [apiData, SetApiData] = useState([]);
   const [loading, SetLoading] = useState(true);
   const {theme} = useContext(ThemeContext);
+  //const {path} = useMatch();
   //Using normal Fetch javascript
   // useEffect(() => {
   // fetch(URL)
@@ -67,7 +68,7 @@ export default function Page() {
             </CardContent>
             <CardActions>
               <Button style={{marginRight:'auto'}} size="small"><Link>Share</Link></Button>
-              <Button style={{marginLeft:'auto'}} size="small"><Link to={`/Details/${test.id}`}>Detail</Link></Button>
+              <Button style={{marginLeft:'auto'}} size="small"><Link to={`${test.id}`}>Detail</Link></Button>
             </CardActions>
           </Card>
         ))}

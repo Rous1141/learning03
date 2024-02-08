@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Container, Grid, Typography } from '@mui/material';
-import { ThemeContext } from './Themes/ThemeProvider.tsx';
+import { ThemeContext } from '../Themes/ThemeProvider.tsx';
 
 export default function Footer() {
   const {theme} = useContext(ThemeContext)
