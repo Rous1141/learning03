@@ -76,7 +76,7 @@ function Characters(){
             </Typography>
           </CardContent>
           <CardActions>
-            <Button onClick={switchImage()} size="small"><Link to={`/`}>Return Home</Link></Button>
+            <Button onClick={switchImage()} size="small"><Link to={`/characters`}>Return Home</Link></Button>
             <Button onClick={switchImage()} size="small"><Link to={`edit`}>Update Detail</Link></Button>
             <Button onClick={handleClick} sx={{color:"red"}} size="small">Delete</Button>
           </CardActions>

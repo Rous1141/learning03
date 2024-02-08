@@ -29,7 +29,7 @@ export default function Menu() {
             <Typography color="inherit" variant="h5" component="div" sx={{flexGrow: 1, fontFamily:theme.fontFamily}}>
               Gensokyo
             </Typography>
-            <Button color="inherit"><Link to={"/"}>Home</Link></Button>
+            <Button color="inherit"><Link to={"/characters"}>Home</Link></Button>
             <Button color="inherit"><Link to={"create"}>Create</Link></Button>
             <Button color="inherit" onClick={toggleTheme}>{dark?"Dark":"Light"}</Button>
           </Toolbar>
