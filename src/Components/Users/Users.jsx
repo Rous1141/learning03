@@ -16,7 +16,8 @@ export default function Users() {
   var listofimages = theme.backgroundImage;
   useEffect(() => {
     const timeout = setTimeout(()=>{
-      if(change){switchImage();SetIndex(listofimages.length-1);return () => clearTimeout(timeout)}
+      // eslint-disable-next-line
+      if(change){listofimages = theme.backgroundImage;switchImage();return () => clearTimeout(timeout)}
       // eslint-disable-next-line
       if (currentIndex === listofimages.length - 1) {
         SetIndex(0);
