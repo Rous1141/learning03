@@ -54,7 +54,7 @@ export default function LoginForm({ handleClick }) {
             </Button>
           </Grid>
           <Grid item xs={12}>
-            <LoginWithGoogle/>
+            <LoginWithGoogle handleClick = {handleClick}/>
           </Grid>
         </Grid>
       </div>
