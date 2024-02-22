@@ -1,17 +1,25 @@
 import React from 'react'
-import GoogleLogin from 'react-google-login'
-
+import {useGoogleLogin} from '@react-oauth/google'
+import GoogleIcon from '@mui/icons-material/Google'; 
+import Button from '@mui/material/Button';
 export default function LoginWithGoogle() {
-    const googleResponse = (response) =>{
-        console.log(response)
-    }
+    // const googleResponse = (response) =>{
+    //     const { profileObj } = response
+    //     console.log(`Welcome Back ${profileObj.name}!`)
+    // }
+    const onClick = useGoogleLogin({
+        onSuccess: response => {console.log(response)},
+        onError: error => {console.log(error)}
+    })
   return (
-        <GoogleLogin
-            clientId='1028943598479-hv1173h4i7533ln9oh7b1844i7qf1piv.apps.googleusercontent.com'
-            buttonText='Sign in with Google'
-            onSuccess={googleResponse}
-            onFailure={googleResponse}
-            cookiePolicy={"single_host_origin"}
-        />
+        <Button
+        onClick={() => onClick()}
+        variant="contained"
+        startIcon={<GoogleIcon />}
+        fullWidth
+        sx={{ backgroundColor: '#DB4437', color: 'white' }}
+      >
+        Login with Google
+      </Button>
   )
 }

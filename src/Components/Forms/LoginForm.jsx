@@ -3,9 +3,8 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import GoogleIcon from '@mui/icons-material/Google'; // Correct Google icon import
-import LoginWithGoogle from '../../Google/LoginWithGoogle';
 import './FormCSS/LoginForm.css'
+import LoginWithGoogle from '../../Google/LoginWithGoogle';
 export default function LoginForm({ handleClick }) {
   const onClick = (event) => {
     // Check if the target of the click is the element that the event was bound to
@@ -55,9 +54,7 @@ export default function LoginForm({ handleClick }) {
             </Button>
           </Grid>
           <Grid item xs={12}>
-
-              <LoginWithGoogle/>
-      
+            <LoginWithGoogle/>
           </Grid>
         </Grid>
       </div>
