@@ -8,9 +8,9 @@
 }
 .loginForm{
     margin: auto;
-    width: 30%;
+    width: 20%;
     padding: 5%;
-    transform: translate(0, 45%);
+    transform: translate(0, 10%);
     background-color: whitesmoke;
     border-radius: 3%;
 }
