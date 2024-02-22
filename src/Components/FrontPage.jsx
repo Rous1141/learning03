@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, {  } from 'react'
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import { Container, Card, CardContent, Typography, Grid } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import LoginForm from './Forms/LoginForm';
+import {useHandleClick} from '../CustomHooks/HandleClick';
 
 const useStyles = makeStyles({
   card: {
@@ -23,17 +24,12 @@ const StyledLink = ({ to, children }) => {
   );
 };
 
-
 export default function FrontPage() {
   const classes = useStyles();
-  const [open,SetOpen] = useState(false);
-  const handleclick = (event) =>{
-    open ? SetOpen(false) : SetOpen(true)
-  
-  }
+  const [isOpen,handleClick] =  useHandleClick();
   
   return (
-    <Container sx={{ marginTop: "10%" }}>
+    <Container sx={{ marginTop: "10%"}}>
       <Grid container spacing={4}>
         <Grid item xs={12} sm={4}>
           <StyledLink to="/admin">
@@ -79,7 +75,7 @@ export default function FrontPage() {
         </Grid>
         <Grid item xs={12} sm={4} sx={{margin:'auto',padding:'0px'}}>
             <Card className={classes.card}>
-            <Button onClick={event => {handleclick(event)}}  sx={{width:'100%'}}>
+            <Button onClick={handleClick}  sx={{width:'100%'}}>
               <CardContent>
                 <Typography variant="h5" component="h2">
                  Login
@@ -89,7 +85,9 @@ export default function FrontPage() {
             </Card>
         </Grid>
       </Grid>
-      {open ? <LoginForm/> : ""}
+      <div style={{visibility: isOpen ? "visible" : "hidden" ,opacity: isOpen ? "100%" : "0%",transition: 'all 0.5s ease-in-out' }}>
+      <LoginForm  handleClick={handleClick}/> 
+      </div>
     </Container>
   )
 }

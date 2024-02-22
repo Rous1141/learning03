@@ -1,42 +1,70 @@
 import React from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
-import GoogleIcon from '@mui/icons-material/Google'; // This should be the correct import for the Google icon
-
-export default function LoginForm() {
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import GoogleIcon from '@mui/icons-material/Google'; // Correct Google icon import
+import './FormCSS/LoginForm.css'
+export default function LoginForm({ handleClick }) {
+  const onClick = (event) => {
+    // Check if the target of the click is the element that the event was bound to
+    if (event.target === event.currentTarget) {
+      // If true, then the click was on the backdrop, not on a child.
+      // Execute the desired action for an outside click here.
+      handleClick()
+    }
+  };
   return (
-    <Stack component="form" spacing={2} noValidate>
-      <TextField
-        required
-        id="email"
-        label="Email Address"
-        name="email"
-        autoComplete="email"
-        fullWidth
-      />
-      <TextField
-        required
-        id="password"
-        label="Password"
-        type="password"
-        autoComplete="current-password"
-        fullWidth
-      />
-      <Button variant="contained" fullWidth>
-        Login
-      </Button>
-      <Button 
-        variant="contained" 
-        startIcon={<GoogleIcon />} 
-        fullWidth
-        style={{ backgroundColor: '#DB4437', color: 'white' }}
-      >
-        Login with Google
-      </Button>
-      <Button variant="outlined" fullWidth>
-        Register Account
-      </Button>
-    </Stack>
+    <div onClick={onClick} className='backdrop'>
+      <div className='loginForm'>
+        <Grid container spacing={2} component="form" noValidate>
+          <Grid item xs={12}>
+            <Typography variant="h5" component="h1" gutterBottom>
+              Please Login To Continue
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              required
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              required
+              id="password"
+              label="Password"
+              type="password"
+              autoComplete="current-password"
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <Button variant="contained" fullWidth>
+              Login
+            </Button>
+          </Grid>
+          <Grid item xs={12}>
+            <Button variant="outlined" fullWidth>
+              Register Account
+            </Button>
+          </Grid>
+          <Grid item xs={12}>
+            <Button
+              variant="contained"
+              startIcon={<GoogleIcon />}
+              fullWidth
+              sx={{ backgroundColor: '#DB4437', color: 'white' }}
+            >
+              Login with Google
+            </Button>
+          </Grid>
+        </Grid>
+      </div>
+    </div>
   );
 }
