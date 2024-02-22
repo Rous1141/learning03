@@ -13,7 +13,7 @@ interface User {
   name:string
   picture:string
   sub:GLfloat
-}
+} // This is the Object google return for us, having all user infomation in their Gmail account
 
 export default function LoginWithGoogle() {
     const [user,SetUser] = useState<User>()
@@ -21,7 +21,8 @@ export default function LoginWithGoogle() {
     //     const { profileObj } = response
     //     console.log(`Welcome Back ${profileObj.name}!`)
     // }
-    const googleAPI = 'https://www.googleapis.com/oauth2/v3/userinfo'
+    //This Method will able you to fetch Google Authentication Token and use Google API to fetch user gmail account info without needing a Backend
+    const googleAPI = 'https://www.googleapis.com/oauth2/v3/userinfo' // URL to googleapis to authenticate user token
     const onClick = useGoogleLogin({
         onSuccess: response => {console.log(response);
            const token = (response.access_token);
@@ -31,7 +32,7 @@ export default function LoginWithGoogle() {
                 .then(response => response.data)
                 .then(user => {SetUser(user)})
                 .catch(error => console.log(error))
-            console.log(user)
+            console.log(user) //
             console.log(`Welcome Back, ${user?.name}`)
         },
         onError: error => {console.log(error)}
