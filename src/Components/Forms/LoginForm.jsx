@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import GoogleIcon from '@mui/icons-material/Google'; // Correct Google icon import
+import LoginWithGoogle from '../../Google/LoginWithGoogle';
 import './FormCSS/LoginForm.css'
 export default function LoginForm({ handleClick }) {
   const onClick = (event) => {
@@ -54,14 +55,9 @@ export default function LoginForm({ handleClick }) {
             </Button>
           </Grid>
           <Grid item xs={12}>
-            <Button
-              variant="contained"
-              startIcon={<GoogleIcon />}
-              fullWidth
-              sx={{ backgroundColor: '#DB4437', color: 'white' }}
-            >
-              Login with Google
-            </Button>
+
+              <LoginWithGoogle/>
+      
           </Grid>
         </Grid>
       </div>
