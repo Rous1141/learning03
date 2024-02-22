@@ -35,14 +35,14 @@ export default function Page() {
     axios
       .get(URL)
       .then(response => response.data)
-      .then(test => { SetApiData(test); SetLoading(false) })
+      .then(player => { SetApiData(player); SetLoading(false) })
       .catch(error => { console.log("Something is wrong:" + error); })
   }, []);
   function ViewCards() {
     return (
       <>
-        {apiData.map((test) => (
-          <Card key={test.id} className='card' 
+        {apiData.map((player) => (
+          <Card key={player.id} className='card' 
           sx={{
             color:theme.color, 
             maxWidth: '70%' ,
@@ -52,23 +52,23 @@ export default function Page() {
           }}>
             <CardMedia
               sx={{ height: 300 }}
-              image={test.image}
-              title={test.name}
+              image={player.image}
+              title={player.name}
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div" color='inherit'>
-                {test.name}
+                {player.name}
               </Typography>
               <Typography variant="body2" color="inherit">
-                {test.age}
+                {player.age}
               </Typography>
               <Typography variant="body2" color="inherit">
-                {test.job}
+                {player.job}
               </Typography>
             </CardContent>
             <CardActions>
               <Button style={{marginRight:'auto'}} size="small"><Link>Share</Link></Button>
-              <Button style={{marginLeft:'auto'}} size="small"><Link to={`${test.id}`}>Detail</Link></Button>
+              <Button style={{marginLeft:'auto'}} size="small"><Link to={`${player.id}`}>Detail</Link></Button>
             </CardActions>
           </Card>
         ))}
