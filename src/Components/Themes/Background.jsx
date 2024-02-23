@@ -1,7 +1,7 @@
 import React from 'react'
 import { useContext, useState, useEffect } from 'react'
 import { ThemeContext } from './ThemeProvider.tsx'
-export default function Background() {
+export default function Background({children}) {
     const { theme, change, switchImage } = useContext(ThemeContext)
   const [currentIndex, SetIndex] = useState(0)
   var listofimages = theme.backgroundImage;
@@ -22,7 +22,7 @@ export default function Background() {
   }, [currentIndex, switchImage])
   return (
     <div className="background" style={{ backgroundImage: `url('${listofimages[currentIndex]}')`, transition: theme.transition }}>
-
+        {children}
     </div>
   )
 }

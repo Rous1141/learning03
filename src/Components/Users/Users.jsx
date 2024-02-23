@@ -6,34 +6,15 @@ import PeopleDetail from './PeopleDetail.jsx';
 import UpdatePeople from './UpdatePeople.jsx';
 import Menu from './Menu.jsx';
 import CreatePeople from './CreatePeople.jsx';
-import { ThemeContext } from '../Themes/ThemeProvider.tsx';
-import { useContext, useState, useEffect } from 'react';
+import Background from '../Themes/Background.jsx';
 
 
 export default function Users() {
-  const { theme, change, switchImage } = useContext(ThemeContext)
-  const [currentIndex, SetIndex] = useState(0)
-  var listofimages = theme.backgroundImage;
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      // eslint-disable-next-line
-      if (change) { listofimages = theme.backgroundImage; switchImage(); return () => clearTimeout(timeout) }
-      // eslint-disable-next-line
-      if (currentIndex === listofimages.length - 1) {
-        SetIndex(0);
-      }
-      else {
-        SetIndex(currentIndex + 1);
-      }
-    }, 6000)
-    return () => clearTimeout(timeout)
-    // eslint-disable-next-line
-  }, [currentIndex, switchImage])
-  // const path = useMatch('/characters');
   return (
     <div>
       <Menu />
-      <div className="background" style={{ backgroundImage: `url('${listofimages[currentIndex]}')`, transition: theme.transition }}>
+      <Background>
+      {/* <div className="background" style={{ backgroundImage: `url('${listofimages[currentIndex]}')`, transition: theme.transition }}> */}
         <Routes>
           <Route path={`/`} element={<Page />} />
           <Route path={`:id`} element={<PeopleDetail />} />
@@ -42,7 +23,8 @@ export default function Users() {
         </Routes>
         <Outlet />
         {/* Outlet is use to render child components */}
-      </div>
+      {/* </div> */}
+      </Background>
       <Footer />
     </div>
   )

@@ -1,11 +1,11 @@
-import React, {  } from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import { Container, Card, CardContent, Typography, Grid } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import LoginForm from './Forms/LoginForm';
 import {useHandleClick} from '../CustomHooks/HandleClick';
-
+import  AuthContext  from './AuthenContext.tsx';
 const useStyles = makeStyles({
   card: {
     transition: 'transform 0.3s ease',
@@ -27,7 +27,8 @@ const StyledLink = ({ to, children }) => {
 export default function FrontPage() {
   const classes = useStyles();
   const [isOpen,handleClick] =  useHandleClick();
-  
+  //Get the User from AuthContext
+  const {auth} = useContext(AuthContext)
   return (
     <Container sx={{ marginTop: "10%"}}>
       <Grid container spacing={4}>
@@ -75,6 +76,7 @@ export default function FrontPage() {
         </Grid>
         <Grid item xs={12} sm={4} sx={{margin:'auto',padding:'0px'}}>
             <Card className={classes.card}>
+            {auth==null ? //Check if User have login
             <Button onClick={handleClick}  sx={{width:'100%'}}>
               <CardContent>
                 <Typography variant="h5" component="h2">
@@ -82,12 +84,17 @@ export default function FrontPage() {
                 </Typography>
               </CardContent>
               </Button>
+             : // OR
+             <Typography variant="h5" component="h2">
+             Welcome Back, {auth.name}
+             </Typography>
+             }
             </Card>
         </Grid>
       </Grid>
-      <div style={{visibility: isOpen ? "visible" : "hidden" ,opacity: isOpen ? "100%" : "0%",transition: 'all 0.5s ease-in-out' }}>
-      <LoginForm  handleClick={handleClick}/> 
-      </div>
+         <div style={{visibility: isOpen ? "visible" : "hidden" ,opacity: isOpen ? "100%" : "0%",transition: 'all 0.5s ease-in-out' }}>
+         <LoginForm  handleClick={handleClick}/> 
+         </div>
     </Container>
   )
 }

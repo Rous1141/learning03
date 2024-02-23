@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import './FormCSS/LoginForm.css'
-import LoginWithGoogle from '../../Google/LoginWithGoogle.tsx';
+import LoginWithGoogle from '../../Login/Google/LoginWithGoogle';
 export default function LoginForm({ handleClick }) {
   const onClick = (event) => {
     // Check if the target of the click is the element that the event was bound to
